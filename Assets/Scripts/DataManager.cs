@@ -6,7 +6,9 @@ public class DataManager : MonoBehaviour
 {
     public static DataManager instance;
 
-    public bool HasInstance => (instance != null);
+    public string playerName;
+
+    public static bool HasInstance => (instance != null);
 
     private void Awake()
     {
