@@ -9,6 +9,7 @@ public class DataManager : MonoBehaviour
 
     public string playerName = "";
     public List<HighscoreEntry> highscores = new List<HighscoreEntry>();
+    public float paddleSpeed = 2.0f;
 
     private const int MAX_N_HIGHSCORES = 10;
 
@@ -30,7 +31,7 @@ public class DataManager : MonoBehaviour
 
     private void Start()
     {
-        LoadData();
+        LoadHighscoreData();
     }
 
     public void AddNewScoreEntry(int score)
@@ -75,9 +76,9 @@ public class DataManager : MonoBehaviour
         public int Score { get; }
     };
 
-    public void SaveData()
+    public void SaveHighscoreData()
     {
-        DataSave dataSave = new DataSave();
+        HighScoresDataSave dataSave = new HighScoresDataSave();
         dataSave.highscoreNames = new List<string>();
         dataSave.highscoreScores = new List<int>();
 
@@ -92,9 +93,9 @@ public class DataManager : MonoBehaviour
     }
 
 
-    public void LoadData()
+    public void LoadHighscoreData()
     {
-        DataSave dataSave = new DataSave();
+        HighScoresDataSave dataSave = new HighScoresDataSave();
         if (!File.Exists(Application.persistentDataPath + "/highscores.json"))
         {
             highscores.Clear();
@@ -105,7 +106,7 @@ public class DataManager : MonoBehaviour
         //Debug.Log(Application.persistentDataPath + "/highscores.json");
         //Debug.Log(json);
 
-        dataSave = JsonUtility.FromJson<DataSave>(json);
+        dataSave = JsonUtility.FromJson<HighScoresDataSave>(json);
 
         highscores.Clear();
         if (dataSave.highscoreNames.Count != dataSave.highscoreScores.Count)
@@ -122,9 +123,34 @@ public class DataManager : MonoBehaviour
     }
 
     [System.Serializable]
-    public class DataSave
+    public class HighScoresDataSave
     {
         public List<string> highscoreNames;
         public List<int> highscoreScores;
+    }
+
+    [System.Serializable]
+    public class SettingsDataSave
+    {
+        public int paddleSpeed;
+    }
+
+    public void LoadSettingsData()
+    {
+        if (!File.Exists(Application.persistentDataPath + "/settings.json"))
+            return;
+
+        string json = File.ReadAllText(Application.persistentDataPath + "/settings.json");
+        SettingsDataSave settings = JsonUtility.FromJson<SettingsDataSave>(json);
+        paddleSpeed = settings.paddleSpeed;
+    }
+
+    public void SaveSettingsData()
+    {
+        SettingsDataSave settings = new SettingsDataSave();
+        settings.paddleSpeed = (int)paddleSpeed;
+
+        string json = JsonUtility.ToJson(settings);
+        File.WriteAllText(Application.persistentDataPath + "/settings.json", json);
     }
 }

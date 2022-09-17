@@ -10,7 +10,7 @@ public class Paddle : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        InitPaddleSpeed();
     }
 
     // Update is called once per frame
@@ -27,5 +27,14 @@ public class Paddle : MonoBehaviour
             pos.x = -MaxMovement;
 
         transform.position = pos;
+    }
+
+    private void InitPaddleSpeed()
+    {
+        if (!DataManager.HasInstance)
+            return;
+
+        DataManager.instance.LoadSettingsData();
+        Speed = DataManager.instance.paddleSpeed;
     }
 }

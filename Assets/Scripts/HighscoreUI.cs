@@ -22,7 +22,7 @@ public class HighscoreUI : MonoBehaviour
 
 
         DataManager.instance.highscores.Clear();
-        DataManager.instance.SaveData();
+        DataManager.instance.SaveHighscoreData();
         SceneManager.LoadScene(SceneManager.GetActiveScene().name); //reloading scene
         Debug.Log("AFTER: highscores = " + DataManager.instance.highscores.Count);
 

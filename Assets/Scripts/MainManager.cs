@@ -42,6 +42,7 @@ public class MainManager : MonoBehaviour
         }
     }
 
+
     private void Update()
     {
         if (!m_Started)
@@ -66,6 +67,7 @@ public class MainManager : MonoBehaviour
         }
     }
 
+    
     void DisplayBestScore()
     {
         if(DataManager.HasInstance)
@@ -92,7 +94,7 @@ public class MainManager : MonoBehaviour
         if(DataManager.HasInstance)
         {
             DataManager.instance.AddNewScoreEntry(m_Points);
-            DataManager.instance.SaveData();
+            DataManager.instance.SaveHighscoreData();
         }
         DisplayBestScore();
         m_GameOver = true;

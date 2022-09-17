@@ -55,6 +55,14 @@ public class Menu : MonoBehaviour
         SceneManager.LoadScene("Highscoreboard");
     }
 
+    public void LoadSettings()
+    {
+        if (DataManager.HasInstance)
+            DataManager.instance.playerName = nameInput.text;
+
+        SceneManager.LoadScene("Settings");
+    }
+
     public void QuitGame()
     {
 #if UNITY_EDITOR
