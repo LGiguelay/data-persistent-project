@@ -16,6 +16,10 @@ public class Menu : MonoBehaviour
 
     private void Awake()
     {
+        if(DataManager.HasInstance)
+        {
+            nameInput.text = DataManager.instance.playerName;
+        }
         NameChanged();
     }
 

@@ -7,7 +7,7 @@ public class DataManager : MonoBehaviour
 {
     public static DataManager instance;
 
-    public string playerName;
+    public string playerName = "";
     public List<HighscoreEntry> highscores = new List<HighscoreEntry>();
 
     private const int MAX_N_HIGHSCORES = 10;
