@@ -43,6 +43,10 @@ public class Menu : MonoBehaviour
         SceneManager.LoadScene("main");
     }
 
+    public void DisplayHighscores()
+    {
+        SceneManager.LoadScene("Highscoreboard");
+    }
 
     public void QuitGame()
     {
