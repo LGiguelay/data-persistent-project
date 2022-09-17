@@ -62,14 +62,6 @@ public class DataManager : MonoBehaviour
     }
 
 
-    public void ResetHighscoreData()
-    {
-        if(File.Exists(Application.persistentDataPath + "/highscores.json"))
-        {
-            File.Delete(Application.persistentDataPath + "/highscores.json");
-        }
-    }
-
 
     public struct HighscoreEntry
     {

@@ -45,6 +45,9 @@ public class Menu : MonoBehaviour
 
     public void DisplayHighscores()
     {
+        if(DataManager.HasInstance)
+            DataManager.instance.playerName = nameInput.text;
+
         SceneManager.LoadScene("Highscoreboard");
     }
 
