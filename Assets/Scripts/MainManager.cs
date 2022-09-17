@@ -22,6 +22,7 @@ public class MainManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        AddPoint(0); //updating score
         //Debug.Log(DataManager.instance.playerName);
         const float step = 0.6f;
         int perLine = Mathf.FloorToInt(4.0f / step);
@@ -67,6 +68,10 @@ public class MainManager : MonoBehaviour
     {
         m_Points += point;
         ScoreText.text = $"Score : {m_Points}";
+        if(DataManager.HasInstance)
+        {
+            ScoreText.text += $" ({DataManager.instance.playerName})";
+        }
     }
 
     public void GameOver()
